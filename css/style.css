@@ -934,4 +934,255 @@ textarea:focus {
     /* Align icon with first line of text */
     flex-shrink: 0;
     /* Prevent icon from shrinking */
+
+    /* Smart Fitness Diagram Animation */
+    .diagram-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+        overflow: hidden;
+    }
+
+    .diagram-svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .diagram-gear {
+        transform-origin: 200px 100px;
+        animation: rotateGear 10s linear infinite;
+    }
+
+    .diagram-pulse {
+        animation: pulseCore 2s ease-in-out infinite;
+        transform-origin: 200px 100px;
+    }
+
+    .diagram-orbit {
+        transform-origin: 200px 100px;
+    }
+
+    .orbit-1 {
+        animation: orbit 8s linear infinite;
+    }
+
+    .orbit-2 {
+        animation: orbit 12s linear infinite reverse;
+    }
+
+    .orbit-3 {
+        animation: orbit 10s linear infinite;
+    }
+
+    .node-pop {
+        animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        opacity: 0;
+        transform-origin: center;
+    }
+
+    .node-pop:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .node-pop:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .node-pop:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    .node-pop:nth-child(4) {
+        animation-delay: 0.8s;
+    }
+
+    .line-draw {
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: drawLine 2s ease-out forwards 1s;
+    }
+
+    @keyframes rotateGear {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes pulseCore {
+
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+
+        50% {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes orbit {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes popIn {
+        from {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes drawLine {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    /* Digital Signage Diagram Animation */
+    .signage-screen {
+        fill: rgba(17, 34, 64, 0.8);
+        stroke: #64ffda;
+        stroke-width: 3;
+        filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.3));
+    }
+
+    .signage-content-bar {
+        fill: #64ffda;
+        opacity: 0.3;
+        animation: barPulse 2s ease-in-out infinite alternate;
+    }
+
+    .signage-content-bar:nth-child(2) {
+        animation-delay: 0.5s;
+        width: 60px;
+    }
+
+    .signage-content-bar:nth-child(3) {
+        animation-delay: 1.0s;
+        width: 80px;
+    }
+
+    .signage-signal {
+        stroke: #64ffda;
+        stroke-width: 2;
+        stroke-linecap: round;
+        fill: none;
+        opacity: 0;
+        transform-origin: center;
+        animation: signalEmit 2s linear infinite;
+    }
+
+    .signage-signal:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .signage-signal:nth-child(2) {
+        animation-delay: 0.6s;
+    }
+
+    .signage-signal:nth-child(3) {
+        animation-delay: 1.2s;
+    }
+
+    @keyframes barPulse {
+        0% {
+            opacity: 0.3;
+        }
+
+        100% {
+            opacity: 0.8;
+        }
+    }
+
+    @keyframes signalEmit {
+        0% {
+            transform: scale(0.5);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+
+        /* Interactive Kiosk Animation */
+        .kiosk-body {
+            fill: #112240;
+            stroke: #64ffda;
+            stroke-width: 2;
+        }
+
+        .kiosk-screen {
+            fill: #1d2d50;
+        }
+
+        .kiosk-btn {
+            fill: rgba(100, 255, 218, 0.2);
+            stroke: #64ffda;
+            stroke-width: 1;
+            transition: all 0.3s;
+        }
+
+        .hand-touch {
+            fill: #ccd6f6;
+            animation: touchGesture 3s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .ripple-effect {
+            fill: none;
+            stroke: #64ffda;
+            stroke-width: 2;
+            opacity: 0;
+            animation: ripple 3s ease-out infinite;
+            transform-origin: 200px 100px;
+            /* Center of the screen/button */
+        }
+
+        @keyframes touchGesture {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-10px, -15px) scale(0.9);
+            }
+
+            /* Move to press button */
+        }
+
+        @keyframes ripple {
+            50% {
+                r: 5;
+                opacity: 1;
+                stroke-width: 2;
+            }
+
+            100% {
+                r: 40;
+                opacity: 0;
+                stroke-width: 0;
+            }
+        }
+    }
 }

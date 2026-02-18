@@ -138,10 +138,48 @@
             </div>
             <div class="projects-grid">
                 <div class="project-card reveal-up">
-                    <div class="project-image gradient-1">
-                        <div class="project-overlay">
-                            <i class="fas fa-tv"></i>
-                        </div>
+                    <div class="diagram-container">
+                        <svg class="diagram-svg" viewBox="0 0 400 200">
+                            <!-- Gradient Defs -->
+                            <defs>
+                                <linearGradient id="screenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#1d2d50" />
+                                    <stop offset="100%" stop-color="#112240" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Background Grid Effect -->
+                            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(100,255,218,0.05)"
+                                    stroke-width="1" />
+                            </pattern>
+                            <rect width="100%" height="100%" fill="url(#grid)" />
+
+                            <!-- Digital Screen Device -->
+                            <g transform="translate(100, 40)">
+                                <!-- Stand -->
+                                <rect x="85" y="110" width="30" height="40" fill="#8892b0" />
+                                <rect x="60" y="150" width="80" height="10" rx="5" fill="#8892b0" />
+
+                                <!-- Screen Frame -->
+                                <rect x="0" y="0" width="200" height="120" rx="10" class="signage-screen" />
+                                <!-- Screen Content Area -->
+                                <rect x="10" y="10" width="180" height="100" fill="url(#screenGradient)" />
+
+                                <!-- Animated Content Bars -->
+                                <g transform="translate(20, 30)">
+                                    <rect y="0" width="40" height="8" rx="2" class="signage-content-bar" />
+                                    <rect y="20" width="100" height="8" rx="2" class="signage-content-bar" />
+                                    <rect y="40" width="140" height="40" rx="4" class="signage-content-bar"
+                                        style="opacity:0.2" />
+                                </g>
+
+                                <!-- Wi-Fi/Signal Waves -->
+                                <path d="M170 25 q10 -10 20 0" class="signage-signal" />
+                                <path d="M165 20 q15 -15 30 0" class="signage-signal" />
+                                <path d="M160 15 q20 -20 40 0" class="signage-signal" />
+                            </g>
+                        </svg>
                     </div>
                     <div class="project-info">
                         <h4>Digital Signage</h4>
@@ -156,10 +194,60 @@
                     </div>
                 </div>
                 <div class="project-card reveal-up delay-100">
-                    <div class="project-image gradient-2">
-                        <div class="project-overlay">
-                            <i class="fas fa-running"></i>
-                        </div>
+                    <div class="diagram-container">
+                        <svg class="diagram-svg" viewBox="0 0 400 200">
+                            <!-- Definitions for reusable gradients/filters -->
+                            <defs>
+                                <radialGradient id="nodeGradient">
+                                    <stop offset="0%" stop-color="#64ffda" />
+                                    <stop offset="100%" stop-color="#112240" />
+                                </radialGradient>
+                            </defs>
+
+                            <!-- Connecting Lines -->
+                            <g stroke="#ffffff" stroke-width="2" opacity="0.3" fill="none">
+                                <path class="line-draw" d="M200 100 L100 50" />
+                                <path class="line-draw" d="M200 100 L300 50" />
+                                <path class="line-draw" d="M200 100 L100 150" />
+                                <path class="line-draw" d="M200 100 L300 150" />
+                            </g>
+
+                            <!-- Central Core (Electric Drive/Mech) -->
+                            <g class="diagram-pulse">
+                                <circle cx="200" cy="100" r="25" fill="#112240" stroke="#64ffda" stroke-width="3" />
+                                <g class="diagram-gear">
+                                    <path fill="#64ffda"
+                                        d="M195 72 h10 v8 h-10 z M225 95 v10 h-8 v-10 z M195 120 h10 v8 h-10 z M167 95 v10 h8 v-10 z" />
+                                </g>
+                            </g>
+
+                            <!-- Surrounding Nodes -->
+                            <g class="diagram-orbit">
+                                <!-- Node 1: Prototype/Design (Top Left) -->
+                                <g class="node-pop" transform="translate(100, 50)">
+                                    <circle r="15" fill="url(#nodeGradient)" />
+                                    <text x="0" y="5" text-anchor="middle" fill="#fff" font-size="10px">Proto</text>
+                                </g>
+
+                                <!-- Node 2: Software/AI (Top Right) -->
+                                <g class="node-pop" transform="translate(300, 50)">
+                                    <circle r="15" fill="url(#nodeGradient)" />
+                                    <text x="0" y="5" text-anchor="middle" fill="#fff" font-size="10px">AI</text>
+                                </g>
+
+                                <!-- Node 3: Mechanical (Bottom Left) -->
+                                <g class="node-pop" transform="translate(100, 150)">
+                                    <circle r="15" fill="url(#nodeGradient)" />
+                                    <text x="0" y="5" text-anchor="middle" fill="#fff" font-size="10px">Mech</text>
+                                </g>
+
+                                <!-- Node 4: App/User (Bottom Right) -->
+                                <g class="node-pop" transform="translate(300, 150)">
+                                    <circle r="15" fill="url(#nodeGradient)" />
+                                    <text x="0" y="5" text-anchor="middle" fill="#fff" font-size="10px">App</text>
+                                </g>
+                            </g>
+                        </svg>
                     </div>
                     <div class="project-info">
                         <h4>Smart Electromechanic Fitness Equipment</h4>
@@ -176,10 +264,42 @@
                     </div>
                 </div>
                 <div class="project-card reveal-up delay-200">
-                    <div class="project-image gradient-3">
-                        <div class="project-overlay">
-                            <i class="fas fa-tablet-alt"></i>
-                        </div>
+                    <div class="diagram-container">
+                        <svg class="diagram-svg" viewBox="0 0 400 200">
+                            <!-- Gradient Defs -->
+                            <defs>
+                                <linearGradient id="kioskGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#112240" />
+                                    <stop offset="100%" stop-color="#0a192f" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Kiosk Body -->
+                            <g transform="translate(140, 30)">
+                                <!-- Stand -->
+                                <path d="M40 120 L80 120 L70 160 L50 160 Z" fill="#8892b0" />
+                                <rect x="30" y="160" width="60" height="10" rx="3" fill="#8892b0" />
+
+                                <!-- Screen Housing -->
+                                <rect x="0" y="0" width="120" height="130" rx="8" class="kiosk-body" />
+                                <!-- Screen Display -->
+                                <rect x="10" y="10" width="100" height="90" fill="#1d2d50" />
+
+                                <!-- UI Elements on Screen -->
+                                <rect x="20" y="25" width="80" height="15" rx="3" fill="rgba(100, 255, 218, 0.2)" />
+                                <rect x="20" y="50" width="35" height="35" rx="5" class="kiosk-btn" />
+                                <rect x="65" y="50" width="35" height="35" rx="5" class="kiosk-btn" />
+
+                                <!-- Interaction Animation -->
+                                <circle cx="82.5" cy="67.5" r="5" class="ripple-effect" />
+
+                                <!-- Hand Cursor -->
+                                <g class="hand-touch" transform="translate(85, 85)">
+                                    <path d="M0,0 L5,5 L2,15 L-5,12 Z" fill="#ccd6f6" /> <!-- Finger simplification -->
+                                    <circle r="4" fill="#ccd6f6" />
+                                </g>
+                            </g>
+                        </svg>
                     </div>
                     <div class="project-info">
                         <h4>Interactive Kiosk</h4>

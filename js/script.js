@@ -2,14 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Custom Cursor
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
-    
+
     window.addEventListener('mousemove', (e) => {
         const posX = e.clientX;
         const posY = e.clientY;
-        
+
         cursorDot.style.left = `${posX}px`;
         cursorDot.style.top = `${posY}px`;
-        
+
         cursorOutline.animate({
             left: `${posX}px`,
             top: `${posY}px`
@@ -34,14 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Navbar Toggle
     const navToggle = document.getElementById('nav-toggle');
     const navLinks = document.getElementById('nav-links');
-    
+
     navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         navToggle.classList.toggle('active');
-        if(navLinks.classList.contains('active')) {
-             navToggle.innerHTML = '<i class="fas fa-times"></i>';
+        if (navLinks.classList.contains('active')) {
+            navToggle.innerHTML = '<i class="fas fa-times"></i>';
         } else {
-             navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
         }
     });
 
@@ -79,17 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let counted = false;
 
     const statsObserver = new IntersectionObserver((entries) => {
-        if(entries[0].isIntersecting && !counted) {
+        if (entries[0].isIntersecting && !counted) {
             const counters = document.querySelectorAll('.stat-number');
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
                 const duration = 2000; // 2 seconds
                 const increment = target / (duration / 16); // 60fps
-                
+
                 let current = 0;
                 const updateCounter = () => {
                     current += increment;
-                    if(current < target) {
+                    if (current < target) {
                         counter.innerText = Math.ceil(current);
                         requestAnimationFrame(updateCounter);
                     } else {
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { threshold: 0.5 });
 
-    if(statsSection) {
+    if (statsSection) {
         statsObserver.observe(statsSection);
     }
 
@@ -111,7 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
     header.addEventListener('mousemove', (e) => {
         const x = (window.innerWidth - e.pageX * 2) / 100;
         const y = (window.innerHeight - e.pageY * 2) / 100;
-        
+
         document.querySelector('.hero-bg-animation').style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
     });
+
 });

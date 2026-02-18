@@ -226,7 +226,30 @@
         </div>
     </footer>
 
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <h3>Danizta Assistant</h3>
+                <button id="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    Hello! I am the Danizta virtual assistant. How can I help you today?
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" id="chatbot-toggle">
+            <i class="fas fa-comment-alt"></i>
+        </button>
+    </div>
+
     <script src="js/script.js"></script>
+    <script src="js/chatbot.js"></script>
 </body>
 
 </html>

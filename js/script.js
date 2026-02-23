@@ -1,4 +1,103 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ============================================================
+    //  THEME & PALETTE SYSTEM
+    // ============================================================
+    const htmlEl = document.documentElement;
+
+    // All toggle buttons (navbar + panel)
+    const navbarToggle = document.getElementById('theme-toggle');
+    const panelToggle = document.getElementById('theme-toggle-panel');
+    const modeLabel = document.getElementById('mode-label');
+
+    // Palette picker
+    const pickerToggle = document.getElementById('palette-picker-toggle');
+    const navbarPickerBtn = document.getElementById('palette-picker-btn');
+    const palettePanel = document.getElementById('palette-panel');
+    const swatchBtns = document.querySelectorAll('.palette-swatch-btn');
+
+    // ── Restore saved preferences ──────────────────────────────
+    const savedTheme = localStorage.getItem('danizta-theme') || 'dark';
+    const savedPalette = localStorage.getItem('danizta-palette') || 'default';
+
+    applyTheme(savedTheme);
+    applyPalette(savedPalette);
+
+    // ── Core helpers ───────────────────────────────────────────
+    function applyTheme(theme) {
+        document.body.classList.add('theme-transition');
+        htmlEl.setAttribute('data-theme', theme);
+        localStorage.setItem('danizta-theme', theme);
+        updateModeLabel(theme);
+        // Sync slider positions on both toggles
+        [navbarToggle, panelToggle].forEach(btn => {
+            if (!btn) return;
+            if (theme === 'light') {
+                btn.classList.add('light-mode');
+            } else {
+                btn.classList.remove('light-mode');
+            }
+        });
+        setTimeout(() => document.body.classList.remove('theme-transition'), 500);
+    }
+
+    function applyPalette(palette) {
+        // Remove old palette attributes
+        htmlEl.removeAttribute('data-palette');
+        if (palette !== 'default') {
+            htmlEl.setAttribute('data-palette', palette);
+        }
+        localStorage.setItem('danizta-palette', palette);
+        // Update active swatch highlight
+        swatchBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.palette === palette);
+        });
+    }
+
+    function updateModeLabel(theme) {
+        if (modeLabel) {
+            modeLabel.textContent = theme === 'light' ? 'Light Mode' : 'Dark Mode';
+        }
+    }
+
+    function toggleTheme() {
+        const current = htmlEl.getAttribute('data-theme') || 'dark';
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    // ── Toggle listeners ───────────────────────────────────────
+    if (navbarToggle) navbarToggle.addEventListener('click', toggleTheme);
+    if (panelToggle) panelToggle.addEventListener('click', toggleTheme);
+
+    // ── Palette swatch listeners ───────────────────────────────
+    swatchBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.body.classList.add('theme-transition');
+            applyPalette(btn.dataset.palette);
+            setTimeout(() => document.body.classList.remove('theme-transition'), 500);
+        });
+    });
+
+    // ── Palette panel open / close ─────────────────────────────
+    function togglePanel() {
+        const isOpen = palettePanel.classList.contains('open');
+        palettePanel.classList.toggle('open', !isOpen);
+        pickerToggle.classList.toggle('open', !isOpen);
+        if (navbarPickerBtn) navbarPickerBtn.classList.toggle('open', !isOpen);
+    }
+
+    if (pickerToggle) pickerToggle.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
+    if (navbarPickerBtn) navbarPickerBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
+
+    // Close panel on outside click
+    document.addEventListener('click', (e) => {
+        const container = document.getElementById('palette-picker-container');
+        if (container && !container.contains(e.target)) {
+            palettePanel.classList.remove('open');
+            pickerToggle.classList.remove('open');
+            if (navbarPickerBtn) navbarPickerBtn.classList.remove('open');
+        }
+    });
+
     // Custom Cursor
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
@@ -21,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clickables.forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.backgroundColor = 'rgba(100, 255, 218, 0.1)';
+            cursorOutline.style.backgroundColor = 'rgba(37, 99, 235, 0.1)';
             cursorDot.style.opacity = '0';
         });
         el.addEventListener('mouseleave', () => {

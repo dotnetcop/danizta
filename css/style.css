@@ -1,19 +1,554 @@
+/* ============================================
+   BASE (Default Dark — Danizta Blue)
+   ============================================ */
 :root {
-    --bg-color: #0a192f;
-    --bg-secondary: #112240;
-    --bg-card: #1d2d50;
-    --text-primary: #ccd6f6;
-    --text-secondary: #8892b0;
-    --accent: #64ffda;
-    --accent-glow: rgba(100, 255, 218, 0.4);
-    --white: #ffffff;
-    --gradient-1: linear-gradient(135deg, #112240 0%, #0a192f 100%);
-    --gradient-text: linear-gradient(90deg, #64ffda, #00bcd4);
-    --glass: rgba(17, 34, 64, 0.75);
-    --shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+    --bg-color: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #334155;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent: #2563eb;
+    --accent-secondary: #06b6d4;
+    --accent-glow: rgba(37, 99, 235, 0.35);
+    --accent-cyan: #06b6d4;
+    --accent-green: #059669;
+    --white: #f1f5f9;
+    --gradient-1: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    --gradient-text: linear-gradient(90deg, #06b6d4, #059669);
+    --glass: rgba(15, 23, 42, 0.8);
+    --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
     --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Space Grotesk', sans-serif;
+    /* Palette swatch colors (used in picker UI) */
+    --swatch-slack: #4a154b;
+    --swatch-github: #24292e;
+    --swatch-stripe: #635bff;
+}
+
+/* ============================================
+   LIGHT MODE (Default palette)
+   ============================================ */
+html[data-theme="light"] {
+    --bg-color: #ffffff;
+    --bg-secondary: #f1f5f9;
+    --bg-card: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --accent: #2563eb;
+    --accent-secondary: #06b6d4;
+    --accent-glow: rgba(37, 99, 235, 0.2);
+    --white: #1e293b;
+    --gradient-1: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
+    --gradient-text: linear-gradient(90deg, #2563eb, #06b6d4);
+    --glass: rgba(255, 255, 255, 0.88);
+    --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   🟣 VIOLET PALETTE  —  Dark
+   ============================================ */
+html[data-palette="slack"] {
+    --bg-color: #1a0a1e;
+    --bg-secondary: #2a1630;
+    --bg-card: #3b1f44;
+    --text-primary: #f0e6f6;
+    --text-secondary: #b39dbd;
+    --accent: #4a154b;
+    --accent-secondary: #36c5f0;
+    --accent-glow: rgba(74, 21, 75, 0.45);
+    --white: #f0e6f6;
+    --gradient-1: linear-gradient(135deg, #2a1630 0%, #1a0a1e 100%);
+    --gradient-text: linear-gradient(90deg, #36c5f0, #ecb22e);
+    --glass: rgba(26, 10, 30, 0.82);
+    --shadow: 0 10px 30px -10px rgba(74, 21, 75, 0.5);
+}
+
+/* 🟣 VIOLET PALETTE  —  Light */
+html[data-palette="slack"][data-theme="light"] {
+    --bg-color: #ffffff;
+    --bg-secondary: #f4eff6;
+    --bg-card: #ffffff;
+    --text-primary: #1a0a1e;
+    --text-secondary: #6b4f72;
+    --accent: #4a154b;
+    --accent-secondary: #36c5f0;
+    --accent-glow: rgba(74, 21, 75, 0.18);
+    --white: #1a0a1e;
+    --gradient-1: linear-gradient(135deg, #f4eff6 0%, #ffffff 100%);
+    --gradient-text: linear-gradient(90deg, #4a154b, #36c5f0);
+    --glass: rgba(255, 255, 255, 0.88);
+    --shadow: 0 10px 30px -10px rgba(74, 21, 75, 0.12);
+}
+
+/* ============================================
+   ⚫ MIDNIGHT PALETTE  —  Dark
+   ============================================ */
+html[data-palette="github"] {
+    --bg-color: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #21262d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent: #0366d6;
+    --accent-secondary: #58a6ff;
+    --accent-glow: rgba(3, 102, 214, 0.4);
+    --white: #e6edf3;
+    --gradient-1: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+    --gradient-text: linear-gradient(90deg, #58a6ff, #79c0ff);
+    --glass: rgba(13, 17, 23, 0.82);
+    --shadow: 0 10px 30px -10px rgba(3, 102, 214, 0.35);
+}
+
+/* ⚫ MIDNIGHT PALETTE  —  Light */
+html[data-palette="github"][data-theme="light"] {
+    --bg-color: #ffffff;
+    --bg-secondary: #f6f8fa;
+    --bg-card: #ffffff;
+    --text-primary: #24292e;
+    --text-secondary: #586069;
+    --accent: #0366d6;
+    --accent-secondary: #58a6ff;
+    --accent-glow: rgba(3, 102, 214, 0.15);
+    --white: #24292e;
+    --gradient-1: linear-gradient(135deg, #f6f8fa 0%, #ffffff 100%);
+    --gradient-text: linear-gradient(90deg, #0366d6, #58a6ff);
+    --glass: rgba(255, 255, 255, 0.9);
+    --shadow: 0 10px 30px -10px rgba(3, 102, 214, 0.1);
+}
+
+/* ============================================
+   🔵 ELECTRIC PALETTE  —  Dark
+   ============================================ */
+html[data-palette="stripe"] {
+    --bg-color: #0a0a1a;
+    --bg-secondary: #13132b;
+    --bg-card: #1e1e3f;
+    --text-primary: #f0f0ff;
+    --text-secondary: #9090c0;
+    --accent: #635bff;
+    --accent-secondary: #00d4ff;
+    --accent-glow: rgba(99, 91, 255, 0.4);
+    --white: #f0f0ff;
+    --gradient-1: linear-gradient(135deg, #13132b 0%, #0a0a1a 100%);
+    --gradient-text: linear-gradient(90deg, #635bff, #00d4ff);
+    --glass: rgba(10, 10, 26, 0.82);
+    --shadow: 0 10px 30px -10px rgba(99, 91, 255, 0.45);
+}
+
+/* 🔵 ELECTRIC PALETTE  —  Light */
+html[data-palette="stripe"][data-theme="light"] {
+    --bg-color: #f6f9fc;
+    --bg-secondary: #eef2f7;
+    --bg-card: #ffffff;
+    --text-primary: #0d1117;
+    --text-secondary: #4f5b76;
+    --accent: #635bff;
+    --accent-secondary: #00d4ff;
+    --accent-glow: rgba(99, 91, 255, 0.18);
+    --white: #0d1117;
+    --gradient-1: linear-gradient(135deg, #eef2f7 0%, #f6f9fc 100%);
+    --gradient-text: linear-gradient(90deg, #635bff, #00d4ff);
+    --glass: rgba(246, 249, 252, 0.9);
+    --shadow: 0 10px 30px -10px rgba(99, 91, 255, 0.12);
+}
+
+/* Smooth theme transition */
+body.theme-transition,
+body.theme-transition *,
+body.theme-transition *::before,
+body.theme-transition *::after {
+    transition: background-color 0.4s ease,
+        color 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        fill 0.4s ease,
+        stroke 0.4s ease !important;
+}
+
+/* ===== Theme Toggle Button ===== */
+.theme-toggle {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: var(--bg-secondary);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    margin-left: 1rem;
+    transition: var(--transition);
+    outline: none;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.theme-toggle .toggle-icon {
+    font-size: 0.7rem;
+    line-height: 1;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle .icon-sun {
+    color: #fbbf24;
+}
+
+.theme-toggle .icon-moon {
+    color: #a5b4fc;
+}
+
+.theme-toggle .toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    border-radius: 50%;
+    transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .theme-toggle {
+    border-color: rgba(37, 99, 235, 0.3);
+}
+
+[data-theme="light"] .theme-toggle .toggle-slider,
+.theme-toggle.light-mode .toggle-slider {
+    transform: translateX(24px);
+}
+
+/* Mini variant inside palette panel */
+.theme-toggle-mini {
+    margin-left: 0;
+    width: 46px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.theme-toggle-mini .toggle-slider {
+    width: 18px;
+    height: 18px;
+}
+
+.theme-toggle-mini.light-mode .toggle-slider {
+    transform: translateX(22px);
+}
+
+/* Light theme-specific overrides */
+[data-theme="light"] .navbar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .service-card,
+[data-theme="light"] .stat-item {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .project-card {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .contact-wrapper {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .image-placeholder {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .image-placeholder::before {
+    background: linear-gradient(45deg, rgba(37, 99, 235, 0.06), transparent);
+}
+
+[data-theme="light"] input,
+[data-theme="light"] textarea {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .chat-window {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .chat-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .chat-messages {
+    background: rgba(240, 244, 248, 0.6);
+}
+
+[data-theme="light"] .bot-message {
+    background: rgba(37, 99, 235, 0.06);
+    border: 1px solid rgba(37, 99, 235, 0.12);
+}
+
+[data-theme="light"] .footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .cursor-dot {
+    background-color: var(--accent);
+}
+
+[data-theme="light"] .cursor-outline {
+    border-color: var(--accent);
+}
+
+[data-theme="light"] .hero-bg-animation {
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.06) 0%, transparent 60%);
+}
+
+[data-theme="light"] .mouse {
+    border-color: var(--text-secondary);
+}
+
+[data-theme="light"] .chatbot-toggle {
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+}
+
+/* ============================================
+   PALETTE PICKER PANEL
+   ============================================ */
+
+/* Floating container — sits above chatbot toggle */
+.palette-picker-container {
+    position: fixed;
+    bottom: 6.5rem;
+    right: 2rem;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+/* The panel itself */
+.palette-panel {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.2rem 1.4rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 200px;
+    animation: panelSlideIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transform-origin: bottom right;
+}
+
+.palette-panel.open {
+    display: flex;
+}
+
+@keyframes panelSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Panel section label */
+.palette-section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    margin-bottom: -0.3rem;
+}
+
+/* Dark / Light Toggle row inside panel */
+.palette-mode-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+}
+
+.palette-mode-label {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Color Swatches */
+.palette-swatches {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.palette-swatch-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.palette-swatch-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(-2px);
+}
+
+.palette-swatch-btn.active {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.swatch-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.swatch-dot.default {
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+}
+
+.swatch-dot.slack {
+    background: linear-gradient(135deg, #4a154b, #36c5f0);
+}
+
+.swatch-dot.github {
+    background: linear-gradient(135deg, #24292e, #0366d6);
+}
+
+.swatch-dot.stripe {
+    background: linear-gradient(135deg, #635bff, #00d4ff);
+}
+
+.swatch-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.swatch-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+}
+
+.swatch-desc {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-top: 1px;
+}
+
+/* Palette picker trigger button */
+.palette-picker-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--accent);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    outline: none;
+    position: relative;
+}
+
+.palette-picker-btn::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: scale(0.9);
+}
+
+.palette-picker-btn.open::after,
+.palette-picker-btn:hover::after {
+    opacity: 0.5;
+    transform: scale(1);
+}
+
+.palette-picker-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--accent-glow);
+}
+
+/* Light-theme panel adjustments */
+[data-theme="light"] .palette-panel {
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .palette-swatch-btn {
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .palette-swatch-btn:hover {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .palette-picker-btn {
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Divider inside panel */
+.palette-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+    margin: 0 -0.2rem;
+}
+
+[data-theme="light"] .palette-divider {
+    background: rgba(0, 0, 0, 0.07);
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .palette-picker-container {
+        bottom: 5.5rem;
+        right: 1rem;
+    }
+
+    .palette-panel {
+        min-width: 175px;
+    }
 }
 
 * {
@@ -22,6 +557,7 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
+
 
 body {
     background-color: var(--bg-color);
@@ -145,7 +681,7 @@ ul {
 .logo-icon {
     width: 60px;
     height: 60px;
-    filter: drop-shadow(0 0 5px rgba(100, 255, 218, 0.4));
+    filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.4));
 }
 
 .constellation-lines {
@@ -199,7 +735,7 @@ ul {
     color: var(--white);
     text-transform: uppercase;
     position: relative;
-    background: linear-gradient(90deg, #ccd6f6, #64ffda);
+    background: linear-gradient(90deg, #e2e8f0, #2563eb);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -297,7 +833,7 @@ ul {
     transform: translate(-50%, -50%);
     width: 150vw;
     height: 150vh;
-    background: radial-gradient(circle at center, rgba(100, 255, 218, 0.1) 0%, transparent 60%);
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1) 0%, transparent 60%);
     z-index: -1;
     animation: pulse 10s infinite alternate;
 }
@@ -433,7 +969,7 @@ ul {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(45deg, rgba(100, 255, 218, 0.1), transparent);
+    background: linear-gradient(45deg, rgba(37, 99, 235, 0.08), transparent);
 }
 
 .icon-large {
@@ -555,21 +1091,21 @@ ul {
 }
 
 .gradient-1 {
-    background: linear-gradient(135deg, #2a2a72 0%, #009ffd 100%);
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
 }
 
 .gradient-2 {
-    background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+    background: linear-gradient(135deg, #1e293b 0%, #059669 100%);
 }
 
 .gradient-3 {
-    background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+    background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
 }
 
 .project-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(10, 25, 47, 0.9);
+    background: rgba(15, 23, 42, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -757,6 +1293,11 @@ textarea:focus {
         right: 0;
     }
 
+    .theme-toggle {
+        margin-left: auto;
+        margin-right: 1rem;
+    }
+
     .hero-title {
         font-size: 3rem;
     }
@@ -787,7 +1328,7 @@ textarea:focus {
     height: 60px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.4);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
     border: none;
     color: var(--bg-color);
     font-size: 1.5rem;
@@ -867,7 +1408,7 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    background: rgba(10, 25, 47, 0.5);
+    background: rgba(15, 23, 42, 0.5);
     /* Slightly darker background for messages area */
 }
 
@@ -908,11 +1449,11 @@ textarea:focus {
 }
 
 .bot-message {
-    background: rgba(100, 255, 218, 0.1);
+    background: rgba(37, 99, 235, 0.1);
     color: var(--text-primary);
     align-self: flex-start;
     border-bottom-left-radius: 2px;
-    border: 1px solid rgba(100, 255, 218, 0.2);
+    border: 1px solid rgba(37, 99, 235, 0.15);
 }
 
 .user-message {
@@ -945,7 +1486,7 @@ textarea:focus {
 .chat-input-area input:focus {
     border-color: var(--accent);
     outline: none;
-    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.1);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
 }
 
 .chat-input-area button {
@@ -1010,7 +1551,7 @@ textarea:focus {
         width: 100%;
         height: 100%;
         position: relative;
-        background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
         overflow: hidden;
     }
 
@@ -1128,14 +1669,14 @@ textarea:focus {
 
     /* Digital Signage Diagram Animation */
     .signage-screen {
-        fill: rgba(17, 34, 64, 0.8);
-        stroke: #64ffda;
+        fill: rgba(15, 23, 42, 0.8);
+        stroke: #2563eb;
         stroke-width: 3;
-        filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.3));
+        filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.3));
     }
 
     .signage-content-bar {
-        fill: #64ffda;
+        fill: #2563eb;
         opacity: 0.3;
         animation: barPulse 2s ease-in-out infinite alternate;
     }
@@ -1151,7 +1692,7 @@ textarea:focus {
     }
 
     .signage-signal {
-        stroke: #64ffda;
+        stroke: #06b6d4;
         stroke-width: 2;
         stroke-linecap: round;
         fill: none;
@@ -1195,31 +1736,31 @@ textarea:focus {
 
         /* Interactive Kiosk Animation */
         .kiosk-body {
-            fill: #112240;
-            stroke: #64ffda;
+            fill: #1e293b;
+            stroke: #2563eb;
             stroke-width: 2;
         }
 
         .kiosk-screen {
-            fill: #1d2d50;
+            fill: #334155;
         }
 
         .kiosk-btn {
-            fill: rgba(100, 255, 218, 0.2);
-            stroke: #64ffda;
+            fill: rgba(37, 99, 235, 0.2);
+            stroke: #2563eb;
             stroke-width: 1;
             transition: all 0.3s;
         }
 
         .hand-touch {
-            fill: #ccd6f6;
+            fill: #e2e8f0;
             animation: touchGesture 3s ease-in-out infinite;
             transform-origin: center;
         }
 
         .ripple-effect {
             fill: none;
-            stroke: #64ffda;
+            stroke: #2563eb;
             stroke-width: 2;
             opacity: 0;
             animation: ripple 3s ease-out infinite;

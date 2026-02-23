@@ -678,10 +678,15 @@ ul {
     text-decoration: none;
 }
 
+/* Inline SVG logo — uses fill="currentColor", so color sets the fill */
 .logo-icon {
-    width: 60px;
-    height: 60px;
-    filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.4));
+    display: block;
+    height: 44px;
+    width: 156px;
+    /* matches viewBox aspect ratio 320:90 at 44px height */
+    color: var(--accent);
+    filter: drop-shadow(0 0 6px var(--accent-glow));
+    transition: color 0.4s ease, filter 0.4s ease;
 }
 
 .constellation-lines {

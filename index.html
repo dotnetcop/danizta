@@ -172,7 +172,7 @@
                 </div>
                  <div class="service-card reveal-up delay-300">
                     <div class="icon-box">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-cogs"></i>
                     </div>
                     <h3>Product Development</h3>
                     <div class="expandable-text" id="product-dev-text">
@@ -387,23 +387,23 @@
                     </ul>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <!-- <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a> -->
                     </div>
                 </div>
                 <form class="contact-form reveal-right" id="contactForm">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" required placeholder="John Doe">
+                        <label for="name">Name <span class="char-count">(0/50)</span></label>
+                        <input type="text" id="name" maxlength="50" required placeholder="Your Name">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required placeholder="john@example.com">
+                        <label for="email">Email <span class="char-count">(0/100)</span></label>
+                        <input type="email" id="email" maxlength="100" required placeholder="your@email.com">
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+                        <label for="message">Message <span class="char-count">(0/500)</span></label>
+                        <textarea id="message" maxlength="500" rows="5" required placeholder="Tell us about your project..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                 </form>
@@ -488,7 +488,8 @@
                 </div>
             </div>
             <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Type your message...">
+                <input type="text" id="chat-input" maxlength="300" placeholder="Type your message..." title="Maximum 300 characters">
+                <span class="chat-char-count">0/300</span>
                 <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
@@ -515,6 +516,121 @@
                 link.innerHTML = 'Learn More <i class="fas fa-arrow-right"></i>';
             }
         }
+
+        // Form character validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+
+                function updateCharCount(input) {
+                    const label = input.parentElement.querySelector('label .char-count');
+                    if (label) {
+                        const maxLength = input.getAttribute('maxlength');
+                        label.textContent = `(${input.value.length}/${maxLength})`;
+                    }
+                }
+
+                nameInput.addEventListener('input', function() {
+                    updateCharCount(this);
+                });
+
+                emailInput.addEventListener('input', function() {
+                    updateCharCount(this);
+                });
+
+                messageInput.addEventListener('input', function() {
+                    updateCharCount(this);
+                });
+
+                // Prevent form submission if validation fails
+                contactForm.addEventListener('submit', function(e) {
+                    const name = nameInput.value.trim();
+                    const email = emailInput.value.trim();
+                    const message = messageInput.value.trim();
+
+                    if (!name || name.length === 0) {
+                        e.preventDefault();
+                        alert('Please enter your name');
+                        return;
+                    }
+                    if (name.length > 50) {
+                        e.preventDefault();
+                        alert('Name cannot exceed 50 characters');
+                        return;
+                    }
+                    if (!email || email.length === 0) {
+                        e.preventDefault();
+                        alert('Please enter your email');
+                        return;
+                    }
+                    if (email.length > 100) {
+                        e.preventDefault();
+                        alert('Email cannot exceed 100 characters');
+                        return;
+                    }
+                    if (!message || message.length === 0) {
+                        e.preventDefault();
+                        alert('Please enter your message');
+                        return;
+                    }
+                    if (message.length > 500) {
+                        e.preventDefault();
+                        alert('Message cannot exceed 500 characters');
+                        return;
+                    }
+                });
+            }
+
+            // Chatbot validation
+            const chatInput = document.getElementById('chat-input');
+            const sendBtn = document.getElementById('send-btn');
+            const charCount = document.querySelector('.chat-char-count');
+
+            if (chatInput) {
+                // Update character count as user types
+                chatInput.addEventListener('input', function() {
+                    charCount.textContent = `${this.value.length}/300`;
+                    charCount.style.color = this.value.length > 250 ? 'var(--accent)' : 'var(--text-secondary)';
+                });
+
+                // Validate before sending
+                sendBtn.addEventListener('click', function(e) {
+                    const message = chatInput.value.trim();
+                    
+                    if (!message || message.length === 0) {
+                        e.preventDefault();
+                        alert('Please enter a message');
+                        return;
+                    }
+                    if (message.length > 300) {
+                        e.preventDefault();
+                        alert('Message cannot exceed 300 characters');
+                        return;
+                    }
+                });
+
+                // Also validate on Enter key press
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const message = this.value.trim();
+                        
+                        if (!message || message.length === 0) {
+                            e.preventDefault();
+                            alert('Please enter a message');
+                            return;
+                        }
+                        if (message.length > 300) {
+                            e.preventDefault();
+                            alert('Message cannot exceed 300 characters');
+                            return;
+                        }
+                    }
+                });
+            }
+        });
     </script>
 
     <script src="js/script.js"></script>

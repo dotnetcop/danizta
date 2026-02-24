@@ -1216,9 +1216,16 @@ ul {
 }
 
 label {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 0.5rem;
     color: var(--white);
+}
+
+.char-count {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
 }
 
 input,
@@ -1494,6 +1501,7 @@ textarea:focus {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    position: relative;
 }
 
 .chat-input-area input {
@@ -1510,6 +1518,14 @@ textarea:focus {
     border-color: var(--accent);
     outline: none;
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.chat-char-count {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
+    transition: var(--transition);
 }
 
 .chat-input-area button {

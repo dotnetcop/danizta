@@ -118,21 +118,21 @@
                 </div>
                 <div class="about-content reveal-right">
                     <h3>Pioneering Tech Standards</h3>
-                    <p>At Danizta, we believe technology is the canvas of modern business. Founded in 2024, our
-                        mission is to decode complexity and deliver seamless, scalable, and secure applications.</p>
+                    <p>At Danizta, we believe technology is the canvas of modern business. Founded in 2025, our
+                        mission is to decode complexity and deliver seamless, scalable, and secure solutions.</p>
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <span class="stat-number" data-target="150">0</span><span class="plus">+</span>
+                            <span class="stat-number" data-target="10">0</span><span class="plus">+</span>
                             <span class="stat-label">Projects Delivered</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" data-target="98">0</span><span class="plus">%</span>
                             <span class="stat-label">Client Retention</span>
                         </div>
-                        <div class="stat-item">
+                        <!-- <div class="stat-item">
                             <span class="stat-number" data-target="25">0</span><span class="plus">+</span>
                             <span class="stat-label">Global Awards</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -170,8 +170,20 @@
                     <p>Cross-platform mobile applications that provide intuitive and engaging user journeys.</p>
                     <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
+                 <div class="service-card reveal-up delay-300">
+                    <div class="icon-box">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Product Development</h3>
+                    <div class="expandable-text" id="product-dev-text">
+                        <p class="text-preview">We drive full cycle product development through a multidisciplinary team skilled in embedded systems, mechanical design, and integrated digital solutions.</p>
+                        <p class="text-full" style="display: none;">We drive full cycle product development through a multidisciplinary team skilled in embedded systems, mechanical design, and integrated digital solutions. Working collaboratively, we build cohesive products that unite advanced hardware, firmware, and mechanical components empowered by mobile applications connected to secure cloud platforms, enabling real‑time data sharing and interactive data visualization. Together, we transform ideas into reliable, user focused products that seamlessly blend physical and digital experiences.</p>
+                    </div>
+                    <a href="#" class="learn-more" onclick="toggleExpand(event, 'product-dev-text')">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
+
     </section>
 
     <section id="showcase" class="section showcase">
@@ -484,6 +496,26 @@
             <i class="fas fa-comment-alt"></i>
         </button>
     </div>
+
+    <script>
+        function toggleExpand(event, elementId) {
+            event.preventDefault();
+            const container = document.getElementById(elementId);
+            const preview = container.querySelector('.text-preview');
+            const full = container.querySelector('.text-full');
+            const link = event.target.closest('.learn-more');
+            
+            if (full.style.display === 'none') {
+                preview.style.display = 'none';
+                full.style.display = 'block';
+                link.innerHTML = 'Show Less <i class="fas fa-arrow-up"></i>';
+            } else {
+                preview.style.display = 'block';
+                full.style.display = 'none';
+                link.innerHTML = 'Learn More <i class="fas fa-arrow-right"></i>';
+            }
+        }
+    </script>
 
     <script src="js/script.js"></script>
     <script src="js/chatbot.js"></script>

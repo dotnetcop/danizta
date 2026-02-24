@@ -1067,6 +1067,24 @@ ul {
     transform: translateX(5px);
 }
 
+/* Expandable Text Container */
+.expandable-text {
+    width: 100%;
+}
+
+.expandable-text p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.text-preview,
+.text-full {
+    transition: var(--transition);
+}
+
 /* Showcase */
 .showcase {
     background: var(--bg-secondary);

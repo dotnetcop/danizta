@@ -118,21 +118,21 @@
                 </div>
                 <div class="about-content reveal-right">
                     <h3>Pioneering Tech Standards</h3>
-                    <p>At Danizta, we believe technology is the canvas of modern business. Founded in 2024, our
-                        mission is to decode complexity and deliver seamless, scalable, and secure applications.</p>
+                    <p>At Danizta, we believe technology is the canvas of modern business. Founded in 2025, our
+                        mission is to decode complexity and deliver seamless, scalable, and secure solutions.</p>
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <span class="stat-number" data-target="150">0</span><span class="plus">+</span>
+                            <span class="stat-number" data-target="10">0</span><span class="plus">+</span>
                             <span class="stat-label">Projects Delivered</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" data-target="98">0</span><span class="plus">%</span>
                             <span class="stat-label">Client Retention</span>
                         </div>
-                        <div class="stat-item">
+                        <!-- <div class="stat-item">
                             <span class="stat-number" data-target="25">0</span><span class="plus">+</span>
                             <span class="stat-label">Global Awards</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -170,8 +170,20 @@
                     <p>Cross-platform mobile applications that provide intuitive and engaging user journeys.</p>
                     <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
+                 <div class="service-card reveal-up delay-300">
+                    <div class="icon-box">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Product Development</h3>
+                    <div class="expandable-text" id="product-dev-text">
+                        <p class="text-preview">We drive full cycle product development through a multidisciplinary team skilled in embedded systems, mechanical design, and integrated digital solutions.</p>
+                        <p class="text-full" style="display: none;">We drive full cycle product development through a multidisciplinary team skilled in embedded systems, mechanical design, and integrated digital solutions. Working collaboratively, we build cohesive products that unite advanced hardware, firmware, and mechanical components empowered by mobile applications connected to secure cloud platforms, enabling real‑time data sharing and interactive data visualization. Together, we transform ideas into reliable, user focused products that seamlessly blend physical and digital experiences.</p>
+                    </div>
+                    <a href="#" class="learn-more" onclick="toggleExpand(event, 'product-dev-text')">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
+
     </section>
 
     <section id="showcase" class="section showcase">
@@ -375,23 +387,23 @@
                     </ul>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <!-- <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a> -->
                     </div>
                 </div>
                 <form class="contact-form reveal-right" id="contactForm" aria-describedby="contact-form-message">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" required placeholder="John Doe">
+                        <label for="name">Name <span class="char-count">(0/50)</span></label>
+                        <input type="text" id="name" maxlength="50" required placeholder="Your Name">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required placeholder="john@example.com">
+                        <label for="email">Email <span class="char-count">(0/100)</span></label>
+                        <input type="email" id="email" maxlength="100" required placeholder="your@email.com">
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+                        <label for="message">Message <span class="char-count">(0/500)</span></label>
+                        <textarea id="message" maxlength="500" rows="5" required placeholder="Tell us about your project..."></textarea>
                     </div>
                     <p id="contact-form-message" class="form-message" aria-live="polite" role="status" hidden></p>
                     <button type="submit" class="btn btn-primary btn-block">Send Message</button>
@@ -477,7 +489,8 @@
                 </div>
             </div>
             <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Type your message...">
+                <input type="text" id="chat-input" maxlength="300" placeholder="Type your message..." title="Maximum 300 characters">
+                <span class="chat-char-count">0/300</span>
                 <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
@@ -485,6 +498,141 @@
             <i class="fas fa-comment-alt"></i>
         </button>
     </div>
+
+    <script>
+        function toggleExpand(event, elementId) {
+            event.preventDefault();
+            const container = document.getElementById(elementId);
+            const preview = container.querySelector('.text-preview');
+            const full = container.querySelector('.text-full');
+            const link = event.target.closest('.learn-more');
+            
+            if (full.style.display === 'none') {
+                preview.style.display = 'none';
+                full.style.display = 'block';
+                link.innerHTML = 'Show Less <i class="fas fa-arrow-up"></i>';
+            } else {
+                preview.style.display = 'block';
+                full.style.display = 'none';
+                link.innerHTML = 'Learn More <i class="fas fa-arrow-right"></i>';
+            }
+        }
+
+        // Form character validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+
+                function updateCharCount(input) {
+                    const label = input.parentElement.querySelector('label .char-count');
+                    if (label) {
+                        const maxLength = input.getAttribute('maxlength');
+                        label.textContent = `(${input.value.length}/${maxLength})`;
+                    }
+                }
+
+                nameInput.addEventListener('input', function() {
+                    updateCharCount(this);
+                });
+
+                emailInput.addEventListener('input', function() {
+                    updateCharCount(this);
+                });
+
+                messageInput.addEventListener('input', function() {
+                    updateCharCount(this);
+                });
+
+                // Prevent form submission if validation fails
+                contactForm.addEventListener('submit', function(e) {
+                    const name = nameInput.value.trim();
+                    const email = emailInput.value.trim();
+                    const message = messageInput.value.trim();
+
+                    if (!name || name.length === 0) {
+                        e.preventDefault();
+                        alert('Please enter your name');
+                        return;
+                    }
+                    if (name.length > 50) {
+                        e.preventDefault();
+                        alert('Name cannot exceed 50 characters');
+                        return;
+                    }
+                    if (!email || email.length === 0) {
+                        e.preventDefault();
+                        alert('Please enter your email');
+                        return;
+                    }
+                    if (email.length > 100) {
+                        e.preventDefault();
+                        alert('Email cannot exceed 100 characters');
+                        return;
+                    }
+                    if (!message || message.length === 0) {
+                        e.preventDefault();
+                        alert('Please enter your message');
+                        return;
+                    }
+                    if (message.length > 500) {
+                        e.preventDefault();
+                        alert('Message cannot exceed 500 characters');
+                        return;
+                    }
+                });
+            }
+
+            // Chatbot validation
+            const chatInput = document.getElementById('chat-input');
+            const sendBtn = document.getElementById('send-btn');
+            const charCount = document.querySelector('.chat-char-count');
+
+            if (chatInput) {
+                // Update character count as user types
+                chatInput.addEventListener('input', function() {
+                    charCount.textContent = `${this.value.length}/300`;
+                    charCount.style.color = this.value.length > 250 ? 'var(--accent)' : 'var(--text-secondary)';
+                });
+
+                // Validate before sending
+                sendBtn.addEventListener('click', function(e) {
+                    const message = chatInput.value.trim();
+                    
+                    if (!message || message.length === 0) {
+                        e.preventDefault();
+                        alert('Please enter a message');
+                        return;
+                    }
+                    if (message.length > 300) {
+                        e.preventDefault();
+                        alert('Message cannot exceed 300 characters');
+                        return;
+                    }
+                });
+
+                // Also validate on Enter key press
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const message = this.value.trim();
+                        
+                        if (!message || message.length === 0) {
+                            e.preventDefault();
+                            alert('Please enter a message');
+                            return;
+                        }
+                        if (message.length > 300) {
+                            e.preventDefault();
+                            alert('Message cannot exceed 300 characters');
+                            return;
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 
     <script src="js/script.js"></script>
     <script src="js/chatbot.js"></script>

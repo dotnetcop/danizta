@@ -138,8 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
             response: "You can email us at hello@danizta.com or call +1 (555) 123-4567. Alternatively, feel free to use the contact form below!"
         },
         {
+            keywords: ['kiosk', 'banking', 'self-service', 'touchscreen'],
+            response: "We build interactive kiosks and self-service touch solutions for modern banking and retail. Banks use them to reduce teller load and serve customers 24/7—deployed across branches for consistent, secure experiences."
+        },
+        {
             keywords: ['who', 'about', 'company', 'danizta'],
-            response: "Danizta is a forward-thinking software engineering firm founded in 2024. We mission is to decode complexity and deliver seamless digital solutions."
+            response: "Danizta is a forward-thinking software engineering firm founded in 2024. Our mission is to decode complexity and deliver seamless digital solutions."
         },
         {
             keywords: ['bye', 'goodbye', 'see you', 'later'],

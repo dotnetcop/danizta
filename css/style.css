@@ -1290,6 +1290,17 @@ textarea:focus-visible {
     color: var(--accent);
 }
 
+.form-message.form-message-visible {
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    background: rgba(37, 99, 235, 0.12);
+    border-left: 3px solid var(--accent);
+}
+
+.form-message:not([hidden]) {
+    display: block;
+}
+
 label {
     display: flex;
     justify-content: space-between;
@@ -1449,6 +1460,11 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+
+/* When chat is open, bring it above the palette picker so Send and palette don't conflict */
+.chatbot-container:has(.chat-window.active) {
+    z-index: 1002;
 }
 
 .chatbot-toggle {

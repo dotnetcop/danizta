@@ -72,19 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function handleUserMessage() {
-        const text = chatInput.value.trim();
-        if (text === '') return;
-
-        addMessage(text, true);
-        chatInput.value = '';
-
-        // Simulate thinking delay
-        setTimeout(() => {
-            getBotResponse(text);
-        }, 600);
-    }
-
     // Chatbot State
     let chatState = {
         askedName: false,

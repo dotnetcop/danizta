@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Palette picker
     const pickerToggle = document.getElementById('palette-picker-toggle');
-    const navbarPickerBtn = document.getElementById('palette-picker-btn');
     const palettePanel = document.getElementById('palette-panel');
     const swatchBtns = document.querySelectorAll('.palette-swatch-btn');
 
@@ -82,11 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const isOpen = palettePanel.classList.contains('open');
         palettePanel.classList.toggle('open', !isOpen);
         pickerToggle.classList.toggle('open', !isOpen);
-        if (navbarPickerBtn) navbarPickerBtn.classList.toggle('open', !isOpen);
     }
 
     if (pickerToggle) pickerToggle.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
-    if (navbarPickerBtn) navbarPickerBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
 
     // Close panel on outside click
     document.addEventListener('click', (e) => {
@@ -94,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (container && !container.contains(e.target)) {
             palettePanel.classList.remove('open');
             pickerToggle.classList.remove('open');
-            if (navbarPickerBtn) navbarPickerBtn.classList.remove('open');
         }
     });
 

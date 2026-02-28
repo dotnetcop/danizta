@@ -1197,6 +1197,17 @@ ul {
     width: 20px;
 }
 
+.contact-details a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-details a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
 .social-links {
     margin-top: 2rem;
 }

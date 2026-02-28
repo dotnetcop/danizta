@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             keywords: ['location', 'where', 'office', 'address', 'city'],
-            response: "We are headquartered at 100 Innovation Dr, Tech City, TC 94043. However, we work with clients globally."
+            response: "We are headquartered at 637 E Big Beaver Rd. However, we work with clients globally."
         },
         {
             keywords: ['contact', 'email', 'phone', 'reach', 'number'],

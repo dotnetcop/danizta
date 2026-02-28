@@ -1197,6 +1197,12 @@ ul {
     margin-bottom: 1.5rem;
 }
 
+.form-message {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--accent);
+}
+
 label {
     display: block;
     margin-bottom: 0.5rem;

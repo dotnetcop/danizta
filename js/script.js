@@ -144,6 +144,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Contact form: no backend — prevent submit, show message and open mailto
+    const contactForm = document.getElementById('contactForm');
+    const contactFormMessage = document.getElementById('contact-form-message');
+    if (contactForm && contactFormMessage) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nameEl = document.getElementById('name');
+            const emailEl = document.getElementById('email');
+            const messageEl = document.getElementById('message');
+            const name = (nameEl && nameEl.value) ? nameEl.value.trim() : '';
+            const email = (emailEl && emailEl.value) ? emailEl.value.trim() : '';
+            const message = (messageEl && messageEl.value) ? messageEl.value.trim() : '';
+            const subject = encodeURIComponent('Contact from Danizta website' + (name ? ` – ${name}` : ''));
+            const body = encodeURIComponent(
+                (message ? `${message}\n\n` : '') +
+                '---\n' + (name ? `Name: ${name}\n` : '') + (email ? `Email: ${email}` : '')
+            );
+            contactFormMessage.textContent = "Opening your email client to send your message to hello@danizta.com.";
+            contactFormMessage.hidden = false;
+            window.location.href = `mailto:hello@danizta.com?subject=${subject}&body=${body}`;
+        });
+    }
+
     // Close mobile menu when link is clicked
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {

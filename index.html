@@ -380,7 +380,7 @@
                         <a href="#"><i class="fab fa-dribbble"></i></a>
                     </div>
                 </div>
-                <form class="contact-form reveal-right" id="contactForm">
+                <form class="contact-form reveal-right" id="contactForm" aria-describedby="contact-form-message">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" required placeholder="John Doe">
@@ -393,6 +393,7 @@
                         <label for="message">Message</label>
                         <textarea id="message" rows="5" required placeholder="Tell us about your project..."></textarea>
                     </div>
+                    <p id="contact-form-message" class="form-message" aria-live="polite" role="status" hidden></p>
                     <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                 </form>
             </div>

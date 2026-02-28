@@ -98,37 +98,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Custom Cursor
+    // Custom Cursor (skip when user prefers reduced motion)
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
+    if (cursorDot && cursorOutline && !prefersReducedMotion) {
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
 
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
 
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    });
-
-    // Cursor Hover Effect
-    const clickables = document.querySelectorAll('a, button, .nav-toggle');
-    clickables.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.backgroundColor = 'rgba(37, 99, 235, 0.1)';
-            cursorDot.style.opacity = '0';
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
         });
-        el.addEventListener('mouseleave', () => {
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorOutline.style.backgroundColor = 'transparent';
-            cursorDot.style.opacity = '1';
+
+        const clickables = document.querySelectorAll('a, button, .nav-toggle');
+        clickables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.classList.add('cursor-hover');
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorDot.style.opacity = '0';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.classList.remove('cursor-hover');
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorDot.style.opacity = '1';
+            });
         });
-    });
+    }
 
     // Navbar Toggle
     const navToggle = document.getElementById('nav-toggle');

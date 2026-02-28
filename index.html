@@ -152,7 +152,7 @@
                     </div>
                     <h3>AI & Machine Learning</h3>
                     <p>Integrate predictive analytics and automation into your workflows to outpace the competition.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#showcase" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card reveal-up delay-200">
                     <div class="icon-box">
@@ -160,7 +160,7 @@
                     </div>
                     <h3>Enterprise SaaS</h3>
                     <p>Scalable, cloud-native architectures designed for high availability and performance.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#showcase" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card reveal-up delay-300">
                     <div class="icon-box">
@@ -168,7 +168,7 @@
                     </div>
                     <h3>Mobile Experience</h3>
                     <p>Cross-platform mobile applications that provide intuitive and engaging user journeys.</p>
-                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#showcase" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                  <div class="service-card reveal-up delay-300">
                     <div class="icon-box">
@@ -371,6 +371,7 @@
                 <div class="contact-info reveal-left">
                     <h3>Let's Build Something Amazing</h3>
                     <p>Ready to start your digital transformation? Reach out to us today.</p>
+                    <p class="contact-response-time">We typically reply within 24 hours.</p>
                     <ul class="contact-details">
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
@@ -414,7 +415,8 @@
 
     <footer class="footer">
         <div class="container text-center">
-            <p>&copy; 2026 Danizta. All rights reserved.</p>
+            <p class="footer-tagline">Transforming the digital future.</p>
+            <p>&copy; 2026 Danizta. All rights reserved. <a href="#contact" class="footer-link">Contact</a></p>
         </div>
     </footer>
 
@@ -489,9 +491,12 @@
                 </div>
             </div>
             <div class="chat-input-area">
-                <input type="text" id="chat-input" maxlength="300" placeholder="Type your message..." title="Maximum 300 characters">
-                <span class="chat-char-count">0/300</span>
-                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+                <p id="chat-validation-message" class="chat-validation-message" role="alert" aria-live="polite" hidden></p>
+                <div class="chat-input-row">
+                    <input type="text" id="chat-input" maxlength="300" placeholder="Type your message..." title="Maximum 300 characters">
+                    <span class="chat-char-count">0/300</span>
+                    <button id="send-btn" type="button"><i class="fas fa-paper-plane"></i></button>
+                </div>
             </div>
         </div>
         <button class="chatbot-toggle" id="chatbot-toggle">
@@ -597,39 +602,6 @@
                     charCount.style.color = this.value.length > 250 ? 'var(--accent)' : 'var(--text-secondary)';
                 });
 
-                // Validate before sending
-                sendBtn.addEventListener('click', function(e) {
-                    const message = chatInput.value.trim();
-                    
-                    if (!message || message.length === 0) {
-                        e.preventDefault();
-                        alert('Please enter a message');
-                        return;
-                    }
-                    if (message.length > 300) {
-                        e.preventDefault();
-                        alert('Message cannot exceed 300 characters');
-                        return;
-                    }
-                });
-
-                // Also validate on Enter key press
-                chatInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        const message = this.value.trim();
-                        
-                        if (!message || message.length === 0) {
-                            e.preventDefault();
-                            alert('Please enter a message');
-                            return;
-                        }
-                        if (message.length > 300) {
-                            e.preventDefault();
-                            alert('Message cannot exceed 300 characters');
-                            return;
-                        }
-                    }
-                });
             }
         });
     </script>

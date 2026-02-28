@@ -6,11 +6,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
     const sendBtn = document.getElementById('send-btn');
     const chatMessages = document.getElementById('chat-messages');
+    const chatValidationMessage = document.getElementById('chat-validation-message');
+
+    const MAX_MESSAGE_LENGTH = 300;
+
+    function showValidationMessage(text) {
+        if (!chatValidationMessage) return;
+        chatValidationMessage.textContent = text;
+        chatValidationMessage.hidden = false;
+        chatValidationMessage.classList.add('chat-validation-visible');
+        chatInput.setAttribute('aria-invalid', 'true');
+        // Auto-hide after 4 seconds
+        clearTimeout(chatValidationMessage._hideTimer);
+        chatValidationMessage._hideTimer = setTimeout(hideValidationMessage, 4000);
+    }
+
+    function hideValidationMessage() {
+        if (!chatValidationMessage) return;
+        chatValidationMessage.hidden = true;
+        chatValidationMessage.classList.remove('chat-validation-visible');
+        chatInput.removeAttribute('aria-invalid');
+        clearTimeout(chatValidationMessage._hideTimer);
+    }
+
+    function handleUserMessage() {
+        const text = chatInput.value.trim();
+
+        if (!text || text.length === 0) {
+            showValidationMessage('Please enter a message');
+            return;
+        }
+        if (text.length > MAX_MESSAGE_LENGTH) {
+            showValidationMessage('Message cannot exceed 300 characters');
+            return;
+        }
+
+        hideValidationMessage();
+        addMessage(text, true);
+        chatInput.value = '';
+
+        // Simulate thinking delay
+        setTimeout(() => {
+            getBotResponse(text);
+        }, 600);
+    }
 
     function toggleChat() {
         chatWindow.classList.toggle('active');
         if (chatWindow.classList.contains('active')) {
             chatInput.focus();
+        } else {
+            hideValidationMessage();
         }
     }
 
@@ -150,4 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
             handleUserMessage();
         }
     });
+
+    if (chatInput) {
+        chatInput.addEventListener('input', hideValidationMessage);
+    }
 });

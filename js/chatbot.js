@@ -6,11 +6,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
     const sendBtn = document.getElementById('send-btn');
     const chatMessages = document.getElementById('chat-messages');
+    const chatValidationMessage = document.getElementById('chat-validation-message');
+
+    const MAX_MESSAGE_LENGTH = 300;
+
+    function showValidationMessage(text) {
+        if (!chatValidationMessage) return;
+        chatValidationMessage.textContent = text;
+        chatValidationMessage.hidden = false;
+        chatValidationMessage.classList.add('chat-validation-visible');
+        chatInput.setAttribute('aria-invalid', 'true');
+        // Auto-hide after 4 seconds
+        clearTimeout(chatValidationMessage._hideTimer);
+        chatValidationMessage._hideTimer = setTimeout(hideValidationMessage, 4000);
+    }
+
+    function hideValidationMessage() {
+        if (!chatValidationMessage) return;
+        chatValidationMessage.hidden = true;
+        chatValidationMessage.classList.remove('chat-validation-visible');
+        chatInput.removeAttribute('aria-invalid');
+        clearTimeout(chatValidationMessage._hideTimer);
+    }
+
+    function handleUserMessage() {
+        const text = chatInput.value.trim();
+
+        if (!text || text.length === 0) {
+            showValidationMessage('Please enter a message');
+            return;
+        }
+        if (text.length > MAX_MESSAGE_LENGTH) {
+            showValidationMessage('Message cannot exceed 300 characters');
+            return;
+        }
+
+        hideValidationMessage();
+        addMessage(text, true);
+        chatInput.value = '';
+
+        // Simulate thinking delay
+        setTimeout(() => {
+            getBotResponse(text);
+        }, 600);
+    }
 
     function toggleChat() {
         chatWindow.classList.toggle('active');
         if (chatWindow.classList.contains('active')) {
             chatInput.focus();
+        } else {
+            hideValidationMessage();
         }
     }
 
@@ -24,19 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDiv.innerText = text;
         chatMessages.appendChild(messageDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function handleUserMessage() {
-        const text = chatInput.value.trim();
-        if (text === '') return;
-
-        addMessage(text, true);
-        chatInput.value = '';
-
-        // Simulate thinking delay
-        setTimeout(() => {
-            getBotResponse(text);
-        }, 600);
     }
 
     // Chatbot State
@@ -98,15 +131,19 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             keywords: ['location', 'where', 'office', 'address', 'city'],
-            response: "We are headquartered at 100 Innovation Dr, Tech City, TC 94043. However, we work with clients globally."
+            response: "We are headquartered at 637 E Big Beaver Rd. However, we work with clients globally."
         },
         {
             keywords: ['contact', 'email', 'phone', 'reach', 'number'],
             response: "You can email us at hello@danizta.com or call +1 (555) 123-4567. Alternatively, feel free to use the contact form below!"
         },
         {
+            keywords: ['kiosk', 'banking', 'self-service', 'touchscreen'],
+            response: "We build interactive kiosks and self-service touch solutions for modern banking and retail. Banks use them to reduce teller load and serve customers 24/7—deployed across branches for consistent, secure experiences."
+        },
+        {
             keywords: ['who', 'about', 'company', 'danizta'],
-            response: "Danizta is a forward-thinking software engineering firm founded in 2024. We mission is to decode complexity and deliver seamless digital solutions."
+            response: "Danizta is a forward-thinking software engineering firm founded in 2024. Our mission is to decode complexity and deliver seamless digital solutions."
         },
         {
             keywords: ['bye', 'goodbye', 'see you', 'later'],
@@ -150,4 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
             handleUserMessage();
         }
     });
+
+    if (chatInput) {
+        chatInput.addEventListener('input', hideValidationMessage);
+    }
 });
